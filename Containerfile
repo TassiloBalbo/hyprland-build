@@ -7,7 +7,7 @@ SHELL ["/bin/bash", "-c"]
 
 RUN pacman -Syu --noconfirm
 
-RUN pacman -S --noconfirm --needed git sudo
+RUN pacman -S --noconfirm --needed git
 
 RUN useradd builduser -m && \
 	passwd -d builduser && \
@@ -15,7 +15,7 @@ RUN useradd builduser -m && \
 
 RUN sudo -u builduser bash -c 'cd ~ && git clone https://aur.archlinux.org/yay-bin.git && \
 	cd yay-bin && \
-	makepkg -si'
+	yes | makepkg -si'
 
 RUN yay -S --noconfirm gdb ninja gcc cmake libxcb xcb-proto xcb-util \
 	xcb-util-keysyms libxfixes libx11 libxcomposite \
