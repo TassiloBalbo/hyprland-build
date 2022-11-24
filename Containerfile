@@ -9,7 +9,7 @@ RUN pacman -Syu --noconfirm
 
 RUN pacman -S --noconfirm --needed git sudo
 
-RUN useradd builduser -m & && \
+RUN useradd builduser -m && \
 	passwd -d builduser && \
 	printf 'builduser ALL=(ALL) ALL\n' | tee -a /etc/sudoers
 
